@@ -1,0 +1,171 @@
+/*
+Program name: style.css
+Author: Tarek Elshahawi
+Date created: 2025-06-04
+Last edited: 2025-06-30
+Version: 3.0
+Description: External styles for Patient Registration Form with error feedback.
+*/
+
+body {
+    background-color: #eef5f9;
+    margin: 0;
+    padding: 0;
+    color: #2f4f4f;
+    font-family: "Times New Roman", Times, serif;
+}
+
+#header {
+    background-color: #0275d8;
+    color: #f0e68c;
+    text-align: center;
+    padding: 20px 0;
+}
+
+#header img {
+    height: 60px;
+    vertical-align: middle;
+}
+
+#header h1 {
+    margin: 10px 0 5px;
+}
+
+#header p {
+    margin: 0;
+    font-weight: bold;
+}
+
+#footer {
+    background-color: #cce5ff;
+    text-align: center;
+    padding: 15px 0;
+    color: #2e3b55;
+}
+
+#footer a {
+    color: #5a5a99;
+    text-decoration: none;
+}
+
+#footer a:hover {
+    text-decoration: underline;
+}
+
+form {
+    background-color: #ffffffcc;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(50, 50, 93, 0.1);
+    color: #333366;
+}
+
+form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #005f73;
+}
+
+table {
+    width: 100%;
+    border-spacing: 10px;
+}
+
+td {
+    vertical-align: middle;
+    color: #2e4057;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #aacfcf;
+    border-radius: 4px;
+    color: #004d40;
+    background-color: #fafaf0;
+    font-size: 1em;
+    font-family: inherit;
+}
+
+button {
+    background-color: #20c997;
+    color: #fffacd;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    margin: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: inherit;
+}
+
+button:hover {
+    background-color: #17a589;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+label {
+    color: #3a3a6b;
+}
+
+#error-message,
+span.error-msg {
+    color: red;
+    font-size: 0.85em;
+    display: block;
+    margin-top: 4px;
+}
+
+input.error,
+select.error,
+textarea.error {
+    border: 2px solid red;
+}
+
+input.valid,
+select.valid,
+textarea.valid {
+    border: 2px solid green;
+}
+
+#reviewOutput {
+    border: 2px dashed #888;
+    background-color: #fff5e6;
+    padding: 20px;
+    color: #3d3d3d;
+    font-size: 0.95em;
+    line-height: 1.5;
+    border-radius: 6px;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+#reviewOutput h3 {
+    color: #b3541e;
+    margin-bottom: 10px;
+}
+
+#reviewOutput ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#reviewOutput li {
+    margin-bottom: 5px;
+}
+
+#thank-you-message {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    font-size: 1.2em;
+    text-align: center;
+}
