@@ -1,0 +1,51 @@
+
+<!--
+Program name: thankyou.html
+Author: Tarek Elshahawi
+Date created: 2025-06-10
+Last edited: 2025-06-30
+Version: 4.0
+Description: Thank you page for patient form submission.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Tarek Medical</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #thank-you-message {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+    </style>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", () => {
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString(undefined, options);
+      });
+    </script>
+</head>
+
+<body>
+    <div id="header">
+        <img src="TarekMedical.png" alt="Tarek Medical Logo">
+        <h1>Tarek Medical</h1>
+        <p>Today is: <span id="current-date"></span></p>
+    </div>
+
+    <div id="thank-you-message">
+        <h2>Thank you for your submission.</h2>
+        <p>We have received your information and will contact you if needed.</p>
+    </div>
+
+    <div id="footer">
+        <p>Tarek Medical | <a href="#">Contact Us</a> | PO BOX 18881, Houston, TX 77450</p>
+    </div>
+</body>
+</html>
