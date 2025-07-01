@@ -21,6 +21,8 @@ Description: Homework 3 - Patient Registration Form with real-time JavaScript va
     <img src="TarekMedical.png" alt="Tarek Medical Logo">
     <h1>Tarek Medical</h1>
     <p>Today is: <span id="current-date"></span></p>
+    <p id="greeting" style="font-weight:bold;"></p>
+
   </div>
 
   <form id="regForm" action="thankyou.html" novalidate>
@@ -223,10 +225,14 @@ Description: Homework 3 - Patient Registration Form with real-time JavaScript va
       </tr>
     </table>
 
-    <div style="text-align: center;">
-      <button type="button" onclick="validateForm()">Validate</button>
-      <button type="reset">Start Over</button>
-      <button type="submit" id="submitBtn" style="display: none;">Submit</button>
+    <div style="margin-top:10px; text-align:center;">
+     <label><input type="checkbox" id="rememberMe" checked /> Remember Me</label>
+     </div>
+     <div id="newUserOption" style="text-align:center; margin-top:10px;"></div>
+     <div style="text-align: center;">
+        <button type="button" onclick="validateForm()">Validate</button>
+        <button type="reset">Start Over</button>
+        <button type="submit" id="submitBtn" style="display: none;">Submit</button>
     </div>
   </form>
 
@@ -234,6 +240,9 @@ Description: Homework 3 - Patient Registration Form with real-time JavaScript va
 
   <div id="footer">
     <p>Tarek Medical | <a href="#">Contact Us</a> | PO BOX 18881, Houston, TX 77450</p>
+  </div>
+  <div style="text-align:center; margin: 20px 0;">
+  <iframe src="https://www.cdc.gov" width="600" height="300" title="CDC Info" style="border:1px solid #ccc;"></iframe>
   </div>
 
   <script>
