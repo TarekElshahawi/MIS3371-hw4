@@ -1,10 +1,10 @@
 
-/* Program name: hw3.js
+/* Program name: hw4.js
 Author: Tarek Elshahawi
 Date created: 2025-06-04
 Date last edited: 2025-06-30
 Version: 4.0
-Description: JavaScript validation for Homework 3
+Description: JavaScript validation for Homework 4
 */
 
 window.onload = function () {
@@ -121,3 +121,64 @@ function validateForm() {
   if (valid) submitBtn.style.display = "inline-block";
   else submitBtn.style.display = "none";
 }
+
+function setCookie(name, value, hours) {
+  const d = new Date();
+  d.setTime(d.getTime() + hours * 60 * 60 * 1000);
+  document.cookie = `${name}=${value}; expires=${d.toUTCString()}; path=/`;
+}
+
+function getCookie(name) {
+  const cArr = document.cookie.split('; ');
+  for (let c of cArr) {
+    const [key, val] = c.split('=');
+    if (key === name) return val;
+  }
+  return null;
+}
+
+function deleteCookie(name) {
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const firstNameInput = document.getElementById("firstName");
+  const greeting = document.getElementById("greeting");
+  const rememberMe = document.getElementById("rememberMe");
+
+  const storedName = getCookie("firstName");
+
+  if (storedName) {
+    greeting.textContent = `Welcome back, ${storedName}`;
+    firstNameInput.value = storedName;
+
+    const newUserDiv = document.getElementById("newUserOption");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.id = "notMe";
+
+    const label = document.createElement("label");
+    label.textContent = ` Not ${storedName}? Click HERE to start as a NEW USER.`;
+    label.prepend(checkbox);
+    newUserDiv.appendChild(label);
+
+    checkbox.addEventListener("change", () => {
+      if (checkbox.checked) {
+        deleteCookie("firstName");
+        greeting.textContent = "Welcome New User";
+        firstNameInput.value = "";
+        document.getElementById("regForm").reset();
+      }
+    });
+  } else {
+    greeting.textContent = "Welcome New User";
+  }
+
+  document.getElementById("regForm").addEventListener("submit", () => {
+    if (rememberMe?.checked) {
+      setCookie("firstName", firstNameInput.value, 48);
+    } else {
+      deleteCookie("firstName");
+    }
+  });
+});
