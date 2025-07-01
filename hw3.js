@@ -3,7 +3,7 @@
 Author: Tarek Elshahawi
 Date created: 2025-06-04
 Date last edited: 2025-06-30
-Version: 3.0
+Version: 4.0
 Description: JavaScript validation for Homework 3
 */
 
@@ -17,8 +17,7 @@ window.onload = function () {
   dobField.min = `${yyyy - 120}-${mm}-${dd}`;
 
   updateMedCount();
-
-  // Attach listeners to all form fields for real-time validation
+  
   const inputs = document.querySelectorAll("input, select, textarea");
   inputs.forEach(input => {
     input.addEventListener("blur", () => validateField(input));
