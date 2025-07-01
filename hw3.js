@@ -24,9 +24,6 @@ function updateMedCount() {
   }
 }
 
-// ... validateField and validateForm unchanged ...
-
-// Cookie handling
 function setCookie(name, value, hours) {
   const d = new Date();
   d.setTime(d.getTime() + hours * 60 * 60 * 1000);
