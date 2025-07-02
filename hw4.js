@@ -35,23 +35,31 @@ window.onload = function () {
       if (firstNameInput) firstNameInput.value = storedName;
       const newUserDiv = document.getElementById("newUserOption");
       if (newUserDiv) {
-        const button = document.createElement("button");
-        button.textContent = `Not ${storedName}? Click here to start as a new user`;
-        button.style.marginTop = "10px";
-        button.style.padding = "8px 16px";
-        button.style.backgroundColor = "#f44336";
-        button.style.color = "#fff";
-        button.style.border = "none";
-        button.style.borderRadius = "4px";
-        button.style.cursor = "pointer";
-        newUserDiv.appendChild(button);
-        button.addEventListener("click", (e) => {
-          e.preventDefault();
-          deleteCookie("firstName");
-          greeting.textContent = "Welcome New User";
-          firstNameInput.value = "";
-          document.getElementById("regForm").reset();
-  });
+        const wrapper = document.createElement("div");
+        wrapper.style.marginTop = "10px";
+        wrapper.style.fontWeight = "bold";
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = "notMe";
+
+        const label = document.createElement("label");
+        label.htmlFor = "notMe";
+        label.innerHTML = ` Not <strong>${storedName}</strong>? Check to start as a <span style="color: red;">NEW USER</span>.`;
+
+        wrapper.appendChild(checkbox);
+        wrapper.appendChild(label);
+        newUserDiv.appendChild(wrapper);
+
+        checkbox.addEventListener("change", () => {
+          if (checkbox.checked) {
+            deleteCookie("firstName");
+            greeting.textContent = "Welcome New User";
+            firstNameInput.value = "";
+            document.getElementById("regForm").reset();
+          }
+        });
+
 
       }
     } else {
