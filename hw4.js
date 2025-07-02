@@ -17,11 +17,59 @@ window.onload = function () {
 
   updateMedCount();
 
-  // Attach listeners to all form fields for real-time validation
   const inputs = document.querySelectorAll("input, select, textarea");
   inputs.forEach(input => {
     input.addEventListener("blur", () => validateField(input));
     input.addEventListener("input", () => validateField(input));
+
+      // === Cookie greeting logic ===
+  const firstNameInput = document.getElementById("firstName");
+  const greeting = document.getElementById("greeting");
+  const rememberMe = document.getElementById("rememberMe");
+
+  const storedName = getCookie("firstName");
+
+  if (greeting) {
+    if (storedName) {
+      greeting.textContent = `Welcome back, ${storedName}`;
+      if (firstNameInput) firstNameInput.value = storedName;
+
+      const newUserDiv = document.getElementById("newUserOption");
+      if (newUserDiv) {
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = "notMe";
+
+        const label = document.createElement("label");
+        label.textContent = ` Not ${storedName}? Click HERE to start as a NEW USER.`;
+        label.prepend(checkbox);
+        newUserDiv.appendChild(label);
+
+        checkbox.addEventListener("change", () => {
+          if (checkbox.checked) {
+            deleteCookie("firstName");
+            greeting.textContent = "Welcome New User";
+            if (firstNameInput) firstNameInput.value = "";
+            document.getElementById("regForm").reset();
+          }
+        });
+      }
+    } else {
+      greeting.textContent = "Welcome New User";
+    }
+  }
+
+  const form = document.getElementById("regForm");
+  if (form) {
+    form.addEventListener("submit", () => {
+      if (rememberMe?.checked) {
+        setCookie("firstName", firstNameInput.value, 48);
+      } else {
+        deleteCookie("firstName");
+      }
+    });
+  }
+
   });
 };
 
@@ -139,69 +187,3 @@ function getCookie(name) {
 function deleteCookie(name) {
   document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
 }
-
-window.onload = function () {
-  const dobField = document.getElementById("dob");
-  const today = new Date();
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth() + 1).padStart(2, '0');
-  const dd = String(today.getDate()).padStart(2, '0');
-  dobField.max = `${yyyy}-${mm}-${dd}`;
-  dobField.min = `${yyyy - 120}-${mm}-${dd}`;
-
-  updateMedCount();
-
-  const inputs = document.querySelectorAll("input, select, textarea");
-  inputs.forEach(input => {
-    input.addEventListener("blur", () => validateField(input));
-    input.addEventListener("input", () => validateField(input));
-  });
-
-  const firstNameInput = document.getElementById("firstName");
-  const greeting = document.getElementById("greeting");
-  const rememberMe = document.getElementById("rememberMe");
-
-  const storedName = getCookie("firstName");
-
-  if (greeting) {
-    if (storedName) {
-      greeting.textContent = `Welcome back, ${storedName}`;
-      if (firstNameInput) firstNameInput.value = storedName;
-
-      const newUserDiv = document.getElementById("newUserOption");
-      if (newUserDiv) {
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.id = "notMe";
-
-        const label = document.createElement("label");
-        label.textContent = ` Not ${storedName}? Click HERE to start as a NEW USER.`;
-        label.prepend(checkbox);
-        newUserDiv.appendChild(label);
-
-        checkbox.addEventListener("change", () => {
-          if (checkbox.checked) {
-            deleteCookie("firstName");
-            greeting.textContent = "Welcome New User";
-            if (firstNameInput) firstNameInput.value = "";
-            document.getElementById("regForm").reset();
-          }
-        });
-      }
-    } else {
-      greeting.textContent = "Welcome New User";
-    }
-  }
-
-  const form = document.getElementById("regForm");
-  if (form) {
-    form.addEventListener("submit", () => {
-      if (rememberMe?.checked) {
-        setCookie("firstName", firstNameInput.value, 48);
-      } else {
-        deleteCookie("firstName");
-      }
-    });
-  }
-};
-
