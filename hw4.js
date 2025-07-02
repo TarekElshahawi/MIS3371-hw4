@@ -1,4 +1,3 @@
-
 /* Program name: hw4.js
 Author: Tarek Elshahawi
 Date created: 2025-06-04
@@ -13,11 +12,12 @@ window.onload = function () {
   const yyyy = today.getFullYear();
   const mm = String(today.getMonth() + 1).padStart(2, '0');
   const dd = String(today.getDate()).padStart(2, '0');
-  dobField.max = `${yyyy}-${mm}-${dd}`;
-  dobField.min = `${yyyy - 120}-${mm}-${dd}`;
+  dobField.max = ${yyyy}-${mm}-${dd};
+  dobField.min = ${yyyy - 120}-${mm}-${dd};
 
   updateMedCount();
-  
+
+  // Attach listeners to all form fields for real-time validation
   const inputs = document.querySelectorAll("input, select, textarea");
   inputs.forEach(input => {
     input.addEventListener("blur", () => validateField(input));
@@ -121,7 +121,6 @@ function validateForm() {
   if (valid) submitBtn.style.display = "inline-block";
   else submitBtn.style.display = "none";
 }
-
 function setCookie(name, value, hours) {
   const d = new Date();
   d.setTime(d.getTime() + hours * 60 * 60 * 1000);
