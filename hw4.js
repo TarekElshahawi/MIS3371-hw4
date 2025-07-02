@@ -17,14 +17,12 @@ window.onload = function () {
 
   updateMedCount();
 
-  // Attach listeners to all form fields for real-time validation
   const inputs = document.querySelectorAll("input, select, textarea");
   inputs.forEach(input => {
     input.addEventListener("blur", () => validateField(input));
     input.addEventListener("input", () => validateField(input));
   });
 
-  // === Greeting and Cookie Logic ===
   const firstNameInput = document.getElementById("firstName");
   const greeting = document.getElementById("greeting");
   const rememberMe = document.getElementById("rememberMe");
@@ -35,26 +33,26 @@ window.onload = function () {
     if (storedName) {
       greeting.textContent = `Welcome back, ${storedName}`;
       if (firstNameInput) firstNameInput.value = storedName;
-
       const newUserDiv = document.getElementById("newUserOption");
       if (newUserDiv) {
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.id = "notMe";
+        const button = document.createElement("button");
+        button.textContent = `Not ${storedName}? Click here to start as a new user`;
+        button.style.marginTop = "10px";
+        button.style.padding = "8px 16px";
+        button.style.backgroundColor = "#f44336";
+        button.style.color = "#fff";
+        button.style.border = "none";
+        button.style.borderRadius = "4px";
+        button.style.cursor = "pointer";
+        newUserDiv.appendChild(button);
+        button.addEventListener("click", (e) => {
+          e.preventDefault();
+          deleteCookie("firstName");
+          greeting.textContent = "Welcome New User";
+          firstNameInput.value = "";
+          document.getElementById("regForm").reset();
+  });
 
-        const label = document.createElement("label");
-        label.textContent = ` Not ${storedName}? Click HERE to start as a NEW USER.`;
-        label.prepend(checkbox);
-        newUserDiv.appendChild(label);
-
-        checkbox.addEventListener("change", () => {
-          if (checkbox.checked) {
-            deleteCookie("firstName");
-            greeting.textContent = "Welcome New User";
-            if (firstNameInput) firstNameInput.value = "";
-            document.getElementById("regForm").reset();
-          }
-        });
       }
     } else {
       greeting.textContent = "Welcome New User";
