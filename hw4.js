@@ -12,17 +12,19 @@ window.onload = function () {
   const yyyy = today.getFullYear();
   const mm = String(today.getMonth() + 1).padStart(2, '0');
   const dd = String(today.getDate()).padStart(2, '0');
-  dobField.max = ${yyyy}-${mm}-${dd};
-  dobField.min = ${yyyy - 120}-${mm}-${dd};
+  dobField.max = `${yyyy}-${mm}-${dd}`;
+  dobField.min = `${yyyy - 120}-${mm}-${dd}`;
 
   updateMedCount();
 
+  // Attach listeners to all form fields for real-time validation
   const inputs = document.querySelectorAll("input, select, textarea");
   inputs.forEach(input => {
     input.addEventListener("blur", () => validateField(input));
     input.addEventListener("input", () => validateField(input));
+  });
 
-      // === Cookie greeting logic ===
+  // === Greeting and Cookie Logic ===
   const firstNameInput = document.getElementById("firstName");
   const greeting = document.getElementById("greeting");
   const rememberMe = document.getElementById("rememberMe");
@@ -69,8 +71,6 @@ window.onload = function () {
       }
     });
   }
-
-  });
 };
 
 function updateMedCount() {
@@ -133,7 +133,7 @@ function validateField(input) {
       break;
     case "password":
       const uid = document.getElementById("userid").value;
-      if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s"])[^" ]{8,30}$/.test(value)) error = "Password must be 8-30 chars, include upper/lowercase, number, special char (no quotes/spaces).";
+      if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s"]).{8,30}$/.test(value)) error = "Password must be 8-30 chars, include upper/lowercase, number, special char (no quotes/spaces).";
       else if (value.toLowerCase().includes(uid.toLowerCase())) error = "Password cannot contain User ID.";
       break;
     case "repassword":
@@ -169,6 +169,7 @@ function validateForm() {
   if (valid) submitBtn.style.display = "inline-block";
   else submitBtn.style.display = "none";
 }
+
 function setCookie(name, value, hours) {
   const d = new Date();
   d.setTime(d.getTime() + hours * 60 * 60 * 1000);
